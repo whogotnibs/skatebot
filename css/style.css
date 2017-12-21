@@ -1,0 +1,80 @@
+body, html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: gainsboro;
+  text-align: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.scoreBox {
+  margin: 0px 30px 0px 30px;
+  display: inline-block;
+  width: 320px;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+#player {
+  color: red;
+}
+
+#bot {
+  color: blue;
+}
+
+.score {
+  height: 75px;
+  font-size: 50px;
+  color: silver;
+  letter-spacing: 25px;
+  font-weight: bold;
+  border: 2px inset lightgray;
+  padding-top: 15px;
+  background-color: lightgray;
+}
+
+h3 {
+  font-style: italic;
+  font-weight: lighter;
+  letter-spacing: 15px;
+}
+
+#bot h3 {
+  color: azure;
+  text-shadow: 0 0 5px azure, 0 0 10px azure, 0 0 20px cyan, 0 0 30px cyan, 0 0 40px cyan, 0 0 55px cyan, 0 0 75px cyan;
+}
+
+#player h3 {
+  color: #F0FFF0;
+  text-shadow: 0 0 5px #F0FFF0, 0 0 10px #F0FFF0, 0 0 20px greenyellow, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 55px greenyellow, 0 0 75px greenyellow;
+}
+
+span {
+  letter-spacing: 0px;
+}
+#display {
+  border: 10px inset darkgray;
+  width: 500px;
+  height: 100px;
+  background-color: darkslategray;
+  color: greenyellow;
+  font-size: 25px;
+  font-family: 'Press Start 2P';
+  text-align: left;
+  margin: 50px auto;
+  overflow: hidden;
+}
+
+marquee {
+  padding-top: 35px;
+  opacity: 0.6;
+}
