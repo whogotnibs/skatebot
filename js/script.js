@@ -41,17 +41,17 @@ var tricks = [
   ["impossible", 3],
   ["BS 180", 1],
   ["BS bigspin", 3],
-  ["BS biggerspin", 5],
-  ["BS flip", 4],
+  ["BS biggerspin", 4],
+  ["BS flip", 3],
   ["BS heelflip", 6],
   ["BS double flip", 6],
   ["BS double heelflip", 6],
-  ["BS bigflip", 5],
-  ["BS biggerflip", 6],
+  ["BS bigflip", 4],
+  ["BS biggerflip", 5],
   ["FS 180", 1],
   ["FS bigspin", 4],
   ["FS biggerspin", 5],
-  ["FS flip", 5],
+  ["FS flip", 4],
   ["FS heelflip", 6],
   ["FS double flip", 6],
   ["FS double heelflip", 7],
@@ -102,12 +102,12 @@ function startUp(){
   }
   //generate the switch tricks
   for (var i = 0; i < (TOTALREGTRICKS); i++) {
-    var renameSwitch = ["switch "+tricks[i][0], tricks[i][1]+2];
+    var renameSwitch = ["switch "+tricks[i][0], tricks[i][1]+3];
     tricks.push(renameSwitch);
   }
   //generate the nollie tricks
   for (var i = 0; i < (TOTALREGTRICKS); i++) {
-    var renameNollie = ["nollie "+tricks[i][0], tricks[i][1]+2];
+    var renameNollie = ["nollie "+tricks[i][0], tricks[i][1]+3];
     tricks.push(renameNollie);
   }
   exceptions();
