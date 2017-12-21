@@ -58,6 +58,11 @@ h3 {
   text-shadow: 0 0 5px #F0FFF0, 0 0 10px #F0FFF0, 0 0 20px greenyellow, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 55px greenyellow, 0 0 75px greenyellow;
 }
 
+#S {
+  color: #F0FFF0;
+  text-shadow: 0 0 5px #F0FFF0, 0 0 10px #F0FFF0, 0 0 20px greenyellow, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 55px greenyellow, 0 0 75px greenyellow;
+}
+
 span {
   letter-spacing: 0px;
 }
