@@ -67,7 +67,7 @@ var tricks = [
   ["hardflip BS body varial", 7],
   ["laser flip body varial", 7],
   ["front foot impossible BS body varial", 5],
-  ["impossible BS body varial", 3],
+  ["impossible body varial", 3],
   ["FS body varial", 1],
   ["pop shuv-it body varial" , 2],
   ["kickflip FS body varial", 4],
@@ -77,7 +77,7 @@ var tricks = [
   ["varial flip body varial", 4],
   ["inward heelflip body varial", 6],
   ["treflip body varial", 4],
-  ["front foot impossible FS body varial", 4],
+  ["front foot impossible body varial", 4],
   ["impossible FS body varial", 5]
 ]
 
