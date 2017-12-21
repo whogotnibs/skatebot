@@ -82,12 +82,12 @@ var tricks = [
 
 $(document).ready(function() {
 
-  startUp ();
+  startUp();
 
   // show the complete trick list
   // console.log("Trick List: "+tricks);
 
-  botSet ();
+  botSet();
 });
 
 //set up scoreboard and generate the trick list
@@ -109,12 +109,26 @@ function startUp(){
   }
   //set all tricks as unset [name, level, set]  0=unset, 1=set
   for (var i = 0; i < (TOTALTRICKS); i++) {
-    var unset = [tricks[i][0], tricks[i][1], 0];
-    tricks.push(unset);
+    tricks[i][2] = 0;
   }
-  console.log("Start");
-  console.log("player: "+playerScore);
-  console.log("bot: "+botScore);
+  exceptions();
+}
+
+//fixes exceptions to trick naming
+function exceptions() {
+  tricks[62][0] = "fakie ollie one-foot";
+  tricks[82][0] = "halfcab";
+  tricks[85][0] = "halfcab flip";
+  tricks[86][0] = "halfcab heelflip";
+  tricks[87][0] = "halfcab double flip";
+  tricks[88][0] = "halfcab double heelflip";
+  tricks[91][0] = "FS halfcab";
+  tricks[94][0] = "FS halfcab flip";
+  tricks[95][0] = "FS halfcab heelflip";
+  tricks[96][0] = "FS halfcab double flip";
+  tricks[97][0] = "FS halfcab double heelflip";
+  tricks[183][0] = "nollie";
+  tricks[184][0] = "nollie one-foot";
 }
 
 //the bot attempts to set a trick
@@ -124,22 +138,21 @@ function botSet() {
   for (var i = 0; i < (TOTALTRICKS); i++) {
     if ($.inArray(level, tricks[i]) != -1) {
       possibleTricks.push(i);
+      console.log(tricks[i][0]);
     }
     else if ($.inArray(level-1, tricks[i]) != -1) {
       possibleTricks.push(i);
+      console.log(tricks[i][0]);
     }
   }
-  console.log("Possible Tricks: "+possibleTricks);
-
   //select a trick to attempt
   attemptedTrick = possibleTricks[Math.floor(Math.random() * possibleTricks.length)];
   console.log("Attempted Trick: "+tricks[attemptedTrick][0]);
   //display the trickname
-  display (tricks[attemptedTrick][0]);
+  display(tricks[attemptedTrick][0]);
 }
 
 //marquee text accross the display
 function display(text) {
-  console.log(text);
   $('#display').append("<marquee behavior=scroll direction='left' scrollamount='22'>"+text+"</marquee>")
 }
