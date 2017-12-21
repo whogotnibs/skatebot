@@ -16,6 +16,7 @@ var attemptedTrick;
 const TOTALREGTRICKS = 61;
 const TOTALTRICKS = 242;
 
+//base list of tricks and their levels
 var tricks = [
   ["ollie", 1],
   ["ollie north", 2],
@@ -85,7 +86,7 @@ $(document).ready(function() {
   startUp();
 
   // show the complete trick list
-  // console.log("Trick List: "+tricks);
+  console.log("Trick List: "+tricks);
 
   botSet();
 });
@@ -133,14 +134,10 @@ function exceptions() {
 
 //the bot attempts to set a trick
 function botSet() {
-  // make a list of all the possible tricks to set
-  // (include all unset tricks in the current level and the level below)
+  // make a list of all the possible tricks to set.
+  // must be current lvl or one below and not already set
   for (var i = 0; i < (TOTALTRICKS); i++) {
-    if ($.inArray(level, tricks[i]) != -1) {
-      possibleTricks.push(i);
-      console.log(tricks[i][0]);
-    }
-    else if ($.inArray(level-1, tricks[i]) != -1) {
+    if (((tricks[i][1] == level) || (tricks[i][1] == level-1)) && (tricks[i][2] == 0)) {
       possibleTricks.push(i);
       console.log(tricks[i][0]);
     }
