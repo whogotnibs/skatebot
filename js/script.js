@@ -86,12 +86,14 @@ $(document).ready(function() {
   startUp();
 
   // show the complete trick list
-  console.log("Trick List: "+tricks);
+  // console.log("Trick List: "+tricks);
 
   botSet();
+
+  playerDefense();
 });
 
-//set up scoreboard and generate the trick list
+//set up the screen and generate the trick list
 function startUp(){
   //generate the fakie tricks
   for (var i = 0; i < (TOTALREGTRICKS); i++) {
@@ -107,10 +109,6 @@ function startUp(){
   for (var i = 0; i < (TOTALREGTRICKS); i++) {
     var renameNollie = ["nollie "+tricks[i][0], tricks[i][1]+2];
     tricks.push(renameNollie);
-  }
-  //set all tricks as unset [name, level, set]  0=unset, 1=set
-  for (var i = 0; i < (TOTALTRICKS); i++) {
-    tricks[i][2] = 0;
   }
   exceptions();
 }
@@ -132,24 +130,58 @@ function exceptions() {
   tricks[184][0] = "nollie one-foot";
 }
 
+//marquee text accross the display
+function displayText(text) {
+  $('#display').append("<marquee behavior=scroll direction='left' scrollamount='22'>"+text+"</marquee>")
+}
+
 //the bot attempts to set a trick
 function botSet() {
   // make a list of all the possible tricks to set.
   // must be current lvl or one below and not already set
   for (var i = 0; i < (TOTALTRICKS); i++) {
-    if (((tricks[i][1] == level) || (tricks[i][1] == level-1)) && (tricks[i][2] == 0)) {
+    if (((tricks[i][1] == level) || (tricks[i][1] == level-1)) && (tricks[i][2] != 1)) {
       possibleTricks.push(i);
-      console.log(tricks[i][0]);
     }
   }
   //select a trick to attempt
   attemptedTrick = possibleTricks[Math.floor(Math.random() * possibleTricks.length)];
-  console.log("Attempted Trick: "+tricks[attemptedTrick][0]);
-  //display the trickname
-  display(tricks[attemptedTrick][0]);
+  //reset the possible tricks
+  possibleTricks = [];
+  //ATTEMPT THE ODDS HERE!!!!
+
+
+  //if landed
+  setTimeout(function() {
+    //display the trick name
+    $("#display").empty();
+    displayText(tricks[attemptedTrick][0]);
+    //prevent the trick from being attempted again
+    tricks[attemptedTrick][2] = 1;
+  }, 250);
+
 }
 
-//marquee text accross the display
-function display(text) {
-  $('#display').append("<marquee behavior=scroll direction='left' scrollamount='22'>"+text+"</marquee>")
+//player records results of defending, a letter is given (if necessary), and a new trick is set
+function playerDefense() {
+  //if landed
+  $("#didItButton").click(function() {
+    $("#display").empty();
+    botSet();
+  });
+  //if missed lower the player score and put a letter on their scoreboard
+  $("#nopeButton").click(function() {
+    $("#display").empty();
+    playerScore--;
+    $('#p'+playerScore).css('color', 'red');
+    //game over if the player is out of lives
+    if (playerScore == 0) {
+      $("#display").empty();
+      displayText("GAME OVER!");
+      $("button").remove();
+    }
+    else {
+      botSet();
+    }
+  });
 }
