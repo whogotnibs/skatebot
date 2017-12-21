@@ -117,6 +117,7 @@ function startUp(){
 function exceptions() {
   tricks[62][0] = "fakie ollie one-foot";
   tricks[82][0] = "halfcab";
+  tricks[83][0] = "fakie bigspin";
   tricks[85][0] = "halfcab flip";
   tricks[86][0] = "halfcab heelflip";
   tricks[87][0] = "halfcab double flip";
