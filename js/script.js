@@ -48,6 +48,7 @@ var tricks = [
   ["BS double heelflip", 6],
   ["BS bigflip", 4],
   ["BS biggerflip", 5],
+  ["impossible 180", 3],
   ["FS 180", 1],
   ["FS bigspin", 4],
   ["FS biggerspin", 5],
@@ -57,6 +58,7 @@ var tricks = [
   ["FS double heelflip", 7],
   ["FS bigflip", 6],
   ["FS biggerflip", 7],
+  ["impossible FS 180", 5],
   ["BS body varial", 2],
   ["front shov body varial" , 4],
   ["kickflip BS body varial", 4],
@@ -67,7 +69,6 @@ var tricks = [
   ["hardflip BS body varial", 7],
   ["laser flip body varial", 7],
   ["front foot impossible BS body varial", 5],
-  ["impossible body varial", 3],
   ["FS body varial", 1],
   ["pop shuv-it body varial" , 2],
   ["kickflip FS body varial", 4],
@@ -78,7 +79,6 @@ var tricks = [
   ["inward heelflip body varial", 6],
   ["treflip body varial", 4],
   ["front foot impossible body varial", 4],
-  ["impossible FS body varial", 5]
 ]
 
 $(document).ready(function() {
@@ -122,11 +122,11 @@ function exceptions() {
   tricks[86][0] = "halfcab heelflip";
   tricks[87][0] = "halfcab double flip";
   tricks[88][0] = "halfcab double heelflip";
-  tricks[91][0] = "FS halfcab";
-  tricks[94][0] = "FS halfcab flip";
-  tricks[95][0] = "FS halfcab heelflip";
-  tricks[96][0] = "FS halfcab double flip";
-  tricks[97][0] = "FS halfcab double heelflip";
+  tricks[92][0] = "FS halfcab";
+  tricks[95][0] = "FS halfcab flip";
+  tricks[96][0] = "FS halfcab heelflip";
+  tricks[97][0] = "FS halfcab double flip";
+  tricks[98][0] = "FS halfcab double heelflip";
   tricks[183][0] = "nollie";
   tricks[184][0] = "nollie one-foot";
 }
@@ -139,9 +139,9 @@ function displayText(text) {
 //the bot attempts to set a trick
 function botSet() {
   // make a list of all the possible tricks to set.
-  // must be current lvl or one below and not already set
+  // must be current lvl or the lvl below (and not already set)
   for (var i = 0; i < (TOTALTRICKS); i++) {
-    if (((tricks[i][1] == level) || (tricks[i][1] == level-1)) && (tricks[i][2] != 1)) {
+    if (((tricks[i][1] <= level) && (tricks[i][1] >= level-1)) && (tricks[i][2] != 1)) {
       possibleTricks.push(i);
     }
   }
