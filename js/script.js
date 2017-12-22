@@ -7,10 +7,21 @@ Play S.K.A.T.E against a bot
 
 */
 
+//starting difficulty lvl of the bot
+var level = 3;
+//odds from 0-1 of bot landing tricks [offense, defense]
+var odds = [
+  [1, 1],
+  [.9, .9],
+  [.8, .7],
+  [.6, .45],
+  [.4, .2],
+  [.1, .05],
+  [0, 0]
+];
 
 var playerScore = 5;
 var botScore = 5;
-var level = 3;
 var possibleTricks = [];
 var attemptedTrick;
 const TOTALREGTRICKS = 61;
@@ -79,7 +90,7 @@ var tricks = [
   ["inward heelflip body varial", 6],
   ["treflip body varial", 4],
   ["front foot impossible body varial", 4],
-]
+];
 
 $(document).ready(function() {
 
@@ -94,7 +105,7 @@ $(document).ready(function() {
 });
 
 //set up the screen and generate the trick list
-function startUp(){
+function startUp() {
   //generate the fakie tricks
   for (var i = 0; i < (TOTALREGTRICKS); i++) {
     var renameFakie = ["fakie "+tricks[i][0], tricks[i][1]];
@@ -132,9 +143,15 @@ function exceptions() {
 }
 
 //marquee text accross the display
-function displayText(text) {
+function displayTextMarquee(text) {
   $('#display').append("<marquee behavior=scroll direction='left' scrollamount='22'>"+text+"</marquee>")
 }
+
+//display text centered
+function displayTextStatic(text) {
+  $('#display').append("<p>"+text+"</p>")
+}
+
 
 //the bot attempts to set a trick
 function botSet() {
@@ -148,41 +165,61 @@ function botSet() {
   //select a trick to attempt
   attemptedTrick = possibleTricks[Math.floor(Math.random() * possibleTricks.length)];
   //reset the possible tricks
+  console.log(possibleTricks);
   possibleTricks = [];
-  //ATTEMPT THE ODDS HERE!!!!
+  //ATTEMPT THE ODDS !!!!
+  attempt(tricks[attemptedTrick][1], 0);
+}
 
-
+function attempt(lvl, position) {
   //if landed
-  setTimeout(function() {
+  if (Math.random() < odds[lvl-1][position]) {
     //display the trick name
     $("#display").empty();
-    displayText(tricks[attemptedTrick][0]);
+    displayTextMarquee(tricks[attemptedTrick][0]);
     //prevent the trick from being attempted again
     tricks[attemptedTrick][2] = 1;
-  }, 250);
-
+    $(".defenseButtons").show();
+  }
+  //if failed
+  else {
+    $("#display").empty();
+    displayTextStatic("FAILED");
+    setTimeout(playerSet, 1500);
+  }
 }
 
 //player records results of defending, a letter is given (if necessary), and a new trick is set
 function playerDefense() {
-  //if landed
-  $("#didItButton").click(function() {
-    $("#display").empty();
-    botSet();
-  });
-  //if missed lower the player score and put a letter on their scoreboard
-  $("#nopeButton").click(function() {
-    $("#display").empty();
-    playerScore--;
-    $('#p'+playerScore).css('color', 'red');
-    //game over if the player is out of lives
-    if (playerScore == 0) {
-      $("#display").empty();
-      displayText("GAME OVER!");
-      $("button").remove();
+  $("#didItButton, #nopeButton").click(function () {
+    //if player successfully lands the trick
+     if (this.id == "didItButton") {
+        $("#display").empty();
+        displayTextStatic("- BOT SET -");
+        $(".defenseButtons").hide();
+        setTimeout(botSet, 1500);
+     }
+     //if missed lower the player score and put a letter on their scoreboard
+     else if (this.id == 'nopeButton') {
+        $("#display").empty();
+        playerScore--;
+        $('#p'+playerScore).css('color', 'red');
+        $(".defenseButtons").hide();
+        //game over if the player is out of lives
+        if (playerScore == 0) {
+          $("#display").empty();
+          displayTextMarquee("GAME OVER!");
+          $("button").remove();
+        }
+        else {
+          displayTextStatic("- BOT SET -");
+          setTimeout(botSet, 1500);
+        }
     }
-    else {
-      botSet();
-    }
   });
+}
+
+function playerSet() {
+  $("#display").empty();
+  displayTextStatic("- YOUR SET -");
 }
