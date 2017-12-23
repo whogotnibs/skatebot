@@ -34,19 +34,45 @@ Play S.K.A.T.E against a bot
   <div id="display"></div>
   <div class="scoreBox" id="player">
     <div class="score" id="playerScore">
-      <span id="p4">S</span><span id="p3">K</span><span id="p2">A</span><span id="p1">T</span><span id="p0">E</span>
+      <span id="p4">S</span>.<span id="p3">K</span>.<span id="p2">A</span>.<span id="p1">T</span>.<span id="p0">E</span>
     </div>
     <h3>YO<span>U</span></h3>
   </div>
   <div class="scoreBox" id="bot">
     <div class="score" id="botScore">
-      <span id="b4">S</span><span id="b3">K</span><span id="b2">A</span><span id="b1">T</span><span id="b0">E</span>
+      <span id="b4">S</span>.<span id="b3">K</span>.<span id="b2">A</span>.<span id="b1">T</span>.<span id="b0">E</span>
     </div>
     <h3>SKATEBO<span>T</span></h3>
   </div>
   <hr>
   <button class="defenseButtons" id="didItButton">DID IT!</button>
   <button class="defenseButtons" id="nopeButton">NOPE</button>
+
+  <div id="selector">
+    <div class="selectorElement">
+    <form id="stanceSelector" action="">
+      <input type="radio" name="stance" value="0" checked="yes"> REGULAR<br>
+      <input type="radio" name="stance" value="61"> FAKIE<br>
+      <input type="radio" name="stance" value="122"> SWITCH<br>
+      <input type="radio" name="stance" value="183"> NOLLIE<br>
+    </form>
+    </div>
+    <div class="selectorElement">
+    <form id="spinSelector">
+      <input type="radio" name="spin" value=" 0 20 " checked="yes"> NONE<br>
+      <input type="radio" name="spin" value=" 21 30 "> BS 180<br>
+      <input type="radio" name="spin" value=" 31 40 "> FS 180<br>
+      <input type="radio" name="spin" value=" 41 50 "> BS BV<br>
+      <input type="radio" name="spin" value=" 51 60 "> FS BV<br>
+    </form>
+    </div>
+    <div class="selectorElement" id="trickSelector">
+      <select>
+      </select>
+      <br>
+      <button class="offenseButtons" id="setButton">SET TRICK</button>
+      <button class="offenseButtons" id="missedButton">MISSED TRICK</button>
+    </div>
   </div>
 </body>
 </html>

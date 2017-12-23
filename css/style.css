@@ -1,4 +1,4 @@
-body, html {
+ivorybody, html {
   padding: 0;
   margin: 0;
 }
@@ -6,6 +6,7 @@ body, html {
 body {
   background-color: gainsboro;
   text-align: center;
+  font-family: sans-serif;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -18,7 +19,7 @@ body {
 .scoreBox {
   margin: 0px 30px 0px 30px;
   display: inline-block;
-  width: 320px;
+  width: 275px;
   text-align: center;
   font-family: sans-serif;
 }
@@ -32,13 +33,13 @@ body {
 }
 
 .score {
-  height: 75px;
+  height: 50px;
   font-size: 50px;
   color: silver;
-  letter-spacing: 25px;
+  /* letter-spacing: 25px; */
   font-weight: bold;
   border: 2px inset lightgray;
-  padding-top: 15px;
+  padding-bottom: 5px;
   background-color: lightgray;
 }
 
@@ -54,8 +55,8 @@ h3 {
 }
 
 #player h3 {
-  color: #F0FFF0;
-  text-shadow: 0 0 5px #F0FFF0, 0 0 10px #F0FFF0, 0 0 20px greenyellow, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 55px greenyellow, 0 0 75px greenyellow;
+  color: ivory;
+  text-shadow: 0 0 5px ivory, 0 0 10px ivory, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 55px yellow, 0 0 75px yellow;
 }
 
 #be, #pe {
@@ -70,7 +71,7 @@ h3 {
   font-size: 25px;
   font-family: 'Press Start 2P';
   text-align: left;
-  margin: 50px auto;
+  margin: 20px auto;
   overflow: hidden;
 }
 
@@ -88,6 +89,44 @@ h3 {
 
 .defenseButtons {
   width: 350px;
-  height: 50px;
+  height: 80px;
   display: none;
+}
+
+.offenseButtons {
+  height: 30px;
+  display: inline-block;
+  margin: 5px;
+  margin-top: 15px;
+}
+
+.selectorElement {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  vertical-align: top;
+  text-align: center;
+}
+
+#selector {
+  width: 900px;
+  margin: auto;
+  line-height: 20px;
+  display: none;
+}
+
+#spinSelector, #stanceSelector {
+  text-align: left;
+  font-size: 12px;
+}
+
+select {
+  height: 30px;
+  width: 200px;
+  font-size: 12px;
+}
+
+#trickSelector {
+  width: 200px;
 }
