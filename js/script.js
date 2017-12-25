@@ -113,6 +113,7 @@ $(document).ready(function() {
   if (playerScore == 0 || botScore == 0) {
     $('.defenseButtons').hide();
     $('#selector').hide();
+    window.open('https://whogotnibs.github.io/skatebot/survey.docx', '_blank');
     //if player wins
     if (playerScore != 0) {displayTextMarquee("WINNER!")}
     //if bot wins
