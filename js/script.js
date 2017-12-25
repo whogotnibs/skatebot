@@ -12,9 +12,9 @@ var level = 3;
 //odds from 0-1 of bot landing tricks [offense, defense]
 var odds = [
   [1, 1],
-  [.85, .9],
-  [.75, .6],
-  [.6, .45],
+  [.85, .8],
+  [.75, .5],
+  [.6, .3],
   [.5, .2],
   [.3, .05],
   [0, 0]
@@ -32,9 +32,9 @@ var tricks = [
   ["ollie", 1],
   ["ollie north", 2],
   ["pop shuv-it", 1],
-  ["360 shuv-it", 3],
+  ["360 shuv-it", 4],
   ["frontside shuv-it", 2],
-  ["frontside 360 shuv-it", 4],
+  ["frontside 360 shuv-it", 5],
   ["kickflip", 3],
   ["heelflip", 5],
   ["double kickflip", 5],
@@ -80,7 +80,7 @@ var tricks = [
   ["hardflip BS body varial", 7],
   ["laser flip body varial", 7],
   ["front foot impossible BS body varial", 5],
-  ["FS body varial", 1],
+  ["FS body varial", 2],
   ["pop shuv-it body varial" , 2],
   ["kickflip FS body varial", 4],
   ["heelflip FS body varial" , 6],
@@ -88,7 +88,7 @@ var tricks = [
   ["double heelflip FS body varial", 7],
   ["varial flip body varial", 4],
   ["inward heelflip body varial", 6],
-  ["treflip body varial", 4],
+  ["treflip body varial", 3],
   ["front foot impossible body varial", 4],
 ];
 
@@ -111,13 +111,12 @@ $(document).ready(function() {
 
   //end the game
   if (playerScore == 0 || botScore == 0) {
-    $("#display").empty();
     $('.defenseButtons').hide();
     $('#selector').hide();
     //if player wins
-    if (playerScore != 0) {displayTextMarquee("WINNER!");}
+    if (playerScore != 0) {displayTextMarquee("WINNER!")}
     //if bot wins
-    else {displayTextMarquee("GAME OVER!");}
+    else {displayTextMarquee("GAME OVER!")}
   }
 });
 
@@ -161,11 +160,13 @@ function exceptions() {
 
 //marquee text accross the display
 function displayTextMarquee(text) {
+  $("#display").empty();
   $('#display').append("<marquee behavior=scroll direction='left' scrollamount='22'>"+text+"</marquee>")
 }
 
 //display text centered
 function displayTextStatic(text) {
+  $("#display").empty();
   $('#display').append("<p>"+text+"</p>")
 }
 
@@ -181,6 +182,14 @@ function botSet() {
   for (var i = 0; i < (TOTALTRICKS); i++) {
     if (((tricks[i][1] <= level) && (tricks[i][1] >= level-1)) && (tricks[i][2] != 1)) {
       possibleTricks.push(i);
+    }
+  }
+  //if those tricks have all been set try the level up
+  if (possibleTricks.length == 0) {
+    for (var i = 0; i < (TOTALTRICKS); i++) {
+      if ((tricks[i][1] == level+1) && (tricks[i][2] != 1)) {
+        possibleTricks.push(i);
+      }
     }
   }
   //select a trick to attempt
@@ -199,7 +208,6 @@ function botAttemptSet(lvl) {
   //if landed
   if (Math.random() < odds[lvl-1][0]) {
     //display the trick name
-    $("#display").empty();
     displayTextMarquee(tricks[attemptedTrick][0]);
     //prevent the trick from being attempted again
     tricks[attemptedTrick][2] = 1;
@@ -207,10 +215,8 @@ function botAttemptSet(lvl) {
   }
   //if failed
   else {
-    $("#display").empty();
     displayTextStatic("FAILED");
     setTimeout(function() {
-      $("#display").empty();
       displayTextStatic("- YOUR SET -");
       trickSelector();
       $("#selector").show();
@@ -223,19 +229,16 @@ function playerDefense() {
 
   //if player successfully lands the trick
    if (this.id == "didItButton") {
-      $("#display").empty();
       $(".defenseButtons").hide();
       botSet();
    }
    //if missed lower the player score and put a letter on their scoreboard
    else if (this.id == 'nopeButton') {
-      $("#display").empty();
       playerScore--;
       $('#p'+playerScore).css('color', 'red');
       $(".defenseButtons").hide();
       //game over if the player is out of lives
       if (playerScore == 0) {
-        $("#display").empty();
         displayTextMarquee("GAME OVER!");
         $("button").remove();
       }
@@ -275,8 +278,9 @@ function playerSet() {
     attemptedTrick = attemptingTrick;
     //prevent the trick from being attempted again
     tricks[attemptedTrick][2] = 1;
+    //update the level
+    level = tricks[attemptedTrick][1]
     //bots turn to defend
-     $("#display").empty();
      displayTextStatic("- BOT DEFENSE -");
      $("#selector").hide();
      setTimeout(function() {
@@ -295,11 +299,9 @@ function botAttemptDefend(lvl) {
   //if landed
   if (Math.random() < odds[lvl-1][1]) {
     //let the player know that the bot landed it
-    $("#display").empty();
     displayTextStatic("GOT IT!");
     //player sets again
     setTimeout(function() {
-      $("#display").empty();
       displayTextStatic("- YOUR SET -");
       trickSelector();
       $("#selector").show();
@@ -308,14 +310,12 @@ function botAttemptDefend(lvl) {
   //if failed
   else {
     //let the player know that the bot failed
-    $("#display").empty();
     displayTextStatic("FAILED");
     //give the bot a letter
     botScore--;
     $('#b'+botScore).css('color', 'red');
     //player sets again
     setTimeout(function() {
-      $("#display").empty();
       displayTextStatic("- YOUR SET -");
       trickSelector();
       $("#selector").show();
