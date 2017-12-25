@@ -186,6 +186,7 @@ function botSet() {
   //select a trick to attempt
   attemptedTrick = possibleTricks[Math.floor(Math.random() * possibleTricks.length)];
   //reset the possible tricks
+  console.log(possibleTricks);
   possibleTricks = [];
   //ATTEMPT THE odds !!!!
   botAttemptSet(tricks[attemptedTrick][1]);
